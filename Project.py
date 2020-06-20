@@ -38,6 +38,19 @@ for x in historical_data:
         average_dictionary = {'Date': date, 'Average': average_value}
         averages2.append(average_dictionary)        
 
-print(averages2)
-print(len(averages1))
-print(len(averages2))
+
+
+#Finding Date of Gold Cross
+for x in averages1:
+    if averages1.index(x) != len(averages1):
+        if averages1[averages1.index(x)]['Average'] < averages2[averages1.index(x)]['Average']:
+            if averages2[averages1.index(x)+1]['Average'] < averages1[averages1.index(x)+1]['Average']:
+                print("A Gold Cross occurred on", averages1[averages1.index(x)+1]['Date'])
+
+
+#Finding Date of Death Cross
+for x in averages1:
+    if averages1.index(x) != len(averages1)-1:
+        if averages1[averages1.index(x)]['Average'] > averages2[averages1.index(x)]['Average']:
+            if averages2[averages1.index(x)+1]['Average'] > averages1[averages1.index(x)+1]['Average']:
+                print("A Death Cross occurred on", averages1[averages1.index(x)+1]['Date'])
