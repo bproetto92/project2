@@ -2,6 +2,10 @@ import os
 import csv
 import pandas
 
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
 csv_filepath = "APPL.csv"
 
 df = pandas.read_csv(csv_filepath)
@@ -38,6 +42,11 @@ for x in historical_data:
         average_dictionary = {'Date': date, 'Average': average_value}
         averages2.append(average_dictionary)        
 
+#Print Moving-Averages Plot - STILL WORK IN PROGRESS
+
+#plt.plot( 'Date', 'Average', data=averages1, marker=' ', color = 'blue', linewidth=2)
+#plt.plot( 'Date', 'Average', data=averages2, marker=' ', color = 'red', linewidth=2)
+#plt.legend
 
 
 #Finding Date of Gold Cross
