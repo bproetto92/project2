@@ -8,12 +8,11 @@ df = pandas.read_csv(csv_filepath)
 
 historical_data = df.to_dict("records")
 
-
-averages = []
+#Calculating List of 50-day moving averages
+averages1 = []
 prices = []
 for x in historical_data:
-    if historical_data.index(x) >= 50:
-        
+    if historical_data.index(x) >= 200:
         prices = []
         for y in historical_data:
             if historical_data.index(x)-historical_data.index(y) < 50:
@@ -22,6 +21,23 @@ for x in historical_data:
                     date = y['Date']
         average_value = sum(x['Close'] for x in prices) / len(prices)
         average_dictionary = {'Date': date, 'Average': average_value}
-        averages.append(average_dictionary)          
+        averages1.append(average_dictionary)          
 
-        
+#Calculating List of 200-day moving averages
+averages2 = []
+prices = []
+for x in historical_data:
+    if historical_data.index(x) >= 200:
+        prices = []
+        for y in historical_data:
+            if historical_data.index(x)-historical_data.index(y) < 200:
+                if historical_data.index(x)-historical_data.index(y) > -1:
+                    prices.append(y)
+                    date = y['Date']
+        average_value = sum(x['Close'] for x in prices) / len(prices)
+        average_dictionary = {'Date': date, 'Average': average_value}
+        averages2.append(average_dictionary)        
+
+print(averages2)
+print(len(averages1))
+print(len(averages2))
