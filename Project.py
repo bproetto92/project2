@@ -6,7 +6,18 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-csv_filepath = "APPL.csv"
+#USER STOCK / COMPANY INPUT
+
+file = input("Please select one of the following Stocks - AAPL, GOOG, NFLX, FB: ")
+
+if file != "AAPL":
+    if file != "GOOG":
+        if file != "NFLX":
+            if file != "FB":
+                print("Sorry, your selection does not match any stocks")
+                exit()
+
+csv_filepath = file+".csv"
 
 df = pandas.read_csv(csv_filepath)
 
