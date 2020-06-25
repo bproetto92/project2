@@ -3,14 +3,12 @@ import csv
 import pandas
 
 import matplotlib
+from matplotlib import pyplot
+from matplotlib import dates
+import datetime
 import matplotlib.pyplot as plt
-import numpy as np
-from datetime import datetime
-from matplotlib.dates import ( 
-    DateFormatter, AutoDateLocator, AutoDateFormatter, datestr2num 
-) 
 
-#USER STOCK / COMPANY INPUT
+#USER INPUT FOR STOCK / COMPANY
 
 file = input("Please select one of the following Stocks - AAPL, GOOG, NFLX, FB: ")
 
@@ -58,32 +56,39 @@ for x in historical_data:
         average_dictionary = {'Date': date, 'Average': average_value}
         averages2.append(average_dictionary)     
 
-#Print Moving-Averages Plot - STILL WORK IN PROGRESS
+#CREATING MOVING AVERAGES PLT
 
 
-datedata = []
+datelist = []
 pricelist = []
 
 for x in averages2:
-    converted_date = matplotlib.dates.datestr2num(x['Date'])
-    datedata.append(converted_date)
+    converted_date = list(map(datetime.datetime.strptime, datelist, len(datelist)*['%Y-%m-%d']))
+    datelist.append(x['Date'])
     prices = x['Average']
     pricelist.append(prices)
 
-#print(datedata)
 
-plt.plot( datedata, pricelist, marker=' ', color = 'blue', linewidth=2,label="200-day moving average")
+converted_dates = list(map(datetime.datetime.strptime, datelist, len(datelist)*['%Y-%m-%d']))
+x_axis = converted_dates
+formatter = dates.DateFormatter('%Y-%m-%d')
+plt.plot( x_axis, pricelist, marker=' ', color = 'blue', linewidth=2,label="200-day moving average")
 
-datedata = []
+datelist = []
 pricelist = []
 
 for x in averages1:
-    converted_date = matplotlib.dates.datestr2num(x['Date'])
-    datedata.append(converted_date)
+    converted_date = list(map(datetime.datetime.strptime, datelist, len(datelist)*['%Y-%m-%d']))
+    datelist.append(x['Date'])
     prices = x['Average']
     pricelist.append(prices)
 
-plt.plot( datedata, pricelist, marker=' ', color = 'red', linewidth=2, label="50-day moving average")
+
+converted_dates = list(map(datetime.datetime.strptime, datelist, len(datelist)*['%Y-%m-%d']))
+x_axis = converted_dates
+formatter = dates.DateFormatter('%Y-%m-%d')
+plt.plot( x_axis, pricelist, marker=' ', color = 'red', linewidth=2,label="50-day moving average")
+
 plt.legend(loc="upper left")
 plt.show()
 
