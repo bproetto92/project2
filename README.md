@@ -17,7 +17,7 @@ After creating the remote repo, use GitHub Desktop software or the command-line 
 After cloning the repo, navigate there from the command-line:
 
 ```sh
-cd ~/Desktop/groceries-exercise
+cd ~/Desktop/project2
 ```
 
 ### Environment Setup
